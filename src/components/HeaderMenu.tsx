@@ -1,11 +1,15 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 const HeaderMenu = () => {
   return (
     <div>  
-        <header>
-            <p>LVT</p>
+        <header className='headerNav'>
+            <Link to='/login'>LVT</Link>
+           <div className='sub-header'>
+            <Link to='/login'>My Jobs</Link>
+            <Link to='/login'>Login</Link>
+           </div>
         </header>
         <Outlet/>
      </div>
