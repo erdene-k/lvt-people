@@ -3,6 +3,11 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import JobCard from '../components/JobCard';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 const Dashboard = () => {
   return (
     <div>
@@ -16,13 +21,43 @@ const Dashboard = () => {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      <Button variant="contained">Search</Button>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Type</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Location"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Location</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Location"
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+      <Button variant="contained">Filter</Button>
+
+
 
     </Box>
    <div className='cards'>
+   <JobCard/>
+   <JobCard/>
+   <JobCard/>
+   <JobCard/>
+   <JobCard/>
+   <JobCard/>
+   <JobCard/>
    <JobCard/>
    </div>
     </div>

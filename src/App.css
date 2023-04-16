@@ -4,6 +4,10 @@
   padding:10px;
   font-size: calc(10px + 2vmin);
 }
+.sub-header{
+  display: flex;
+  gap:20px
+}
 .headerNav a{
   color: #61dafb;
 }
@@ -17,11 +21,16 @@
   height: 60px;
 }
 .cards{
-  margin-top: 30px;
+  margin:30px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-
+  gap:40px;
 }
 body{
   background-color: aliceblue;
+}
+.css-1t6e9jv-MuiCardActions-root{
+  justify-content: space-between;
+  display: flex;
 }
