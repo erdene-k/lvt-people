@@ -5,7 +5,7 @@ const HeaderMenu = () => {
   return (
     <div>  
         <header className='headerNav'>
-            <Link to='/login'>LVT</Link>
+            <Link to='/login'>Home</Link>
            <div className='sub-header'>
             <Link to='/login'>My Jobs</Link>
             <Link to='/login'>Login</Link>
