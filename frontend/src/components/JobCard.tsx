@@ -29,16 +29,14 @@ const JobCard = () => {
 
     </CardMedia>
   <CardContent>
-  <Typography variant="body1" component="div" style={{marginRight:5}}>
-         Sydney, AU
+      <Typography variant="body1" component="div" style={{marginRight:5}}>
+         UB
       </Typography>
-     
       <Typography variant="body2" color="text.secondary">
         Lizards are a widespread group of squamate reptiles, with over 6,000
         species, ranging across all continents except Antarctica
       </Typography>
     </CardContent>
-
     <CardActions>
       <Typography  variant="body1">
         49.99$
