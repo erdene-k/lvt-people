@@ -6,8 +6,10 @@ export default class JobsController {
     public async index(){
         return Job.all()
     }
+    public async handle(){
+        return Job.all()
+    }
     public async store({request, response}:HttpContextContract){
-
         const newJobSchema = schema.create({
             name:schema.string({trim:true}),
         })
