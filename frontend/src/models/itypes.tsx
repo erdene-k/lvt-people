@@ -11,28 +11,28 @@ export interface Job{
     color:string,
     size:string
 }
-enum Cloth{
-    SHIRT = "shirt",
-    PANTS = "pants",
-    DRESS = "dress",
-    SKIRT = "skirt",
-    JACKET = "jacket",
-    COAT = "coat",
-    HAT = "hat",
-    SHOES = "shoes",
-    SOCKS = "socks",
-    UNDERWEAR = "underwear",
-    BLOUSE = "blouse",
-    ETHNIC = "ethnic wear"
+export enum Cloth{
+    SHIRT = "Shirt",
+    PANTS = "Pants",
+    DRESS = "Dress",
+    SKIRT = "Skirt",
+    JACKET = "Jacket",
+    COAT = "Coat",
+    HAT = "Hat",
+    SHOES = "Shoes",
+    SOCKS = "Socks",
+    UNDERWEAR = "Underwear",
+    BLOUSE = "Blouse",
+    ETHNIC = "Ethnic wear"
 }
-enum Status{
-    PENDING = "pending",
-    IN_PRODUCTION = "in_production",
-    READY = "ready",
-    SHIPPED = "shipped",
-    DELIVERED = "delivered",
-    CANCELLED = "cancelled",
-    POSTED = "posted"
+export enum Status{
+    PENDING = "Pending",
+    IN_PRODUCTION = "In production",
+    READY = "Ready",
+    SHIPPED = "Shipped",
+    DELIVERED = "Delivered",
+    CANCELLED = "Cancelled",
+    POSTED = "Posted"
 }
 
 
