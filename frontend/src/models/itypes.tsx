@@ -8,7 +8,7 @@ export interface Job{
     making:string,
     description:string,
     budget:number
-    color:string,
+    colors:string[],
     size:string
 }
 export enum Cloth{

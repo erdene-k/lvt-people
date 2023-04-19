@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,41 +8,43 @@ import Typography from '@mui/material/Typography';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import {Job, Cloth} from '../models/itypes'
+import JobModal from './JobModal';
 type AppProps = { job: Job };
 
 const JobCard = ({job}:AppProps) => {
+  const [open, setOpen] = React.useState(true);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
-    <Card sx={{ width: 345 }}>
-      <CardContent>
-        <Typography variant="h5" component="div">
-          {job.type}
-        </Typography>
-        
-      </CardContent>
+    <Card raised={true}>
       <CardMedia
-        sx={{ height: 300 }}
+        sx={{ height: 300, 
+        width: 300,
+       }}
         image={require("./item.jpg")}
-        title="green iguana"
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "baseline",
-        }}
       >
-        <IconButton aria-label="add to favorites">
+        <div style={{display:'flex', justifyContent:'flex-end',padding:10}}>
           <FavoriteBorderIcon />
-        </IconButton>
-      </CardMedia>
-      <CardContent style={{display:'flex', flexDirection:'column', alignItems :'center'}}>
-        <Typography variant="h6">{job.budget}$ </Typography>
-   
-        <div style={{width:20, height:20, border:'1px solid grey'}}>
-          <div style={{backgroundColor:job.color, margin:3, width:'100%', height:'100%'}}></div>
         </div>
+       <div style={{    
+        display: 'flex',
+        alignItems: 'flex-end',
+        height:'82%'
+    }}> <button  >See More</button></div>
+      </CardMedia>
+      <CardContent>
+        <strong>{job.making}</strong>
+        <p>{job.budget}$ </p>
+       <div style={{display:'flex', gap:10}}>
+       {job.colors.map((color)=>
+      (   
+         <div className='color-container'><div className="color-content" style={{backgroundColor:color, width:'100%', margin:3}}></div>
+         </div>
+      )
+       )}
+       </div>
       </CardContent>
-      <CardActions>
-        <Button>Bid</Button>
-      </CardActions>
+       <JobModal data={job} handleClose={handleClose} modalVisible={open}/>
     </Card>
   );
 }

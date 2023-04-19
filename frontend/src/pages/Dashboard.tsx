@@ -17,10 +17,10 @@ const Dashboard = () => {
     status:Status.PENDING,
     location:'Sydney',
     typesOfMaking:'handmade',
-    making:'blah',
+    making:'handmade',
     description:'blah',
     budget:20,
-    color:'red',
+    colors:['red','green'],
     size:"XL"
   },{
     id:2,
@@ -29,10 +29,10 @@ const Dashboard = () => {
     status:Status.PENDING,
     location:'AU Sydney',
     typesOfMaking:'handmade',
-    making:'blah',
+    making:'sewing machine',
     description:'blah',
     budget:20,
-    color:'red',
+    colors:['red','#ff3'],
     size:"XL"
   }]) 
   return (

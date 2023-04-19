@@ -29,8 +29,56 @@
 }
 body{
   background-color: aliceblue;
+     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
 }
 .css-1t6e9jv-MuiCardActions-root{
   justify-content: space-between;
   display: flex;
+}
+
+.css-fky5tw-MuiPaper-root-MuiCard-root{
+  cursor: pointer;
+
+}
+
+
+.css-fky5tw-MuiPaper-root-MuiCard-root button{
+    opacity: 0;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    background: #6E6D70;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+    color: #DFDEDF;
+    width: 100%;
+    }
+    .css-fky5tw-MuiPaper-root-MuiCard-root:hover button{
+        opacity: 1;
+      }
+
+.css-46bh2p-MuiCardContent-root{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.color-container{
+  width:20px;
+  height:20px; 
+  border:1px solid grey; 
+  display:flex
+}
+.bid-button{
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  background: #64aeb9;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  width: 100%;
+  font-size: 18px;
+  height: 50px;
 }
