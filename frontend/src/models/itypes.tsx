@@ -2,7 +2,6 @@ export interface Job{
     id:number,
     type:Cloth,
     numOfQuotations:number,
-    status:Status,
     location:string,
     typesOfMaking:string,
     making:string,
@@ -10,6 +9,13 @@ export interface Job{
     budget:number
     colors:string[],
     size:string
+}
+export interface Bid{
+    id:number,
+    job:Job,
+    price:number,
+    description:string,
+    status:Status,
 }
 export enum Cloth{
     SHIRT = "Shirt",

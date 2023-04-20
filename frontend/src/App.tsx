@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login";
 import axios from "axios";
 import Dashboard from "./pages/Dashboard";
 import HeaderMenu from "./components/HeaderMenu";
+import BidsPage from "./pages/BidsPage";
+import JobsPage from "./pages/JobsPage";
 
 
 // const getUserData = () =>
@@ -25,12 +27,13 @@ export const router = createBrowserRouter(
   <Route path="/" element={<Navigate to="/login" replace />} />
   <Route path="/login" element={<Login />} />
   <Route path="dashboard" element={<Dashboard />} />
+  <Route path="bids" element={<BidsPage />} />
+  <Route path="jobs" element={<JobsPage />} />
  </Route>
  )
 );
 
 const App = () => (
-
   <main className="main">
    <RouterProvider router={router} />
   </main>

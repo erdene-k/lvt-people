@@ -27,6 +27,11 @@
   justify-content: center;
   gap:40px;
 }
+.bids{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
 body{
   background-color: aliceblue;
      font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
@@ -36,12 +41,9 @@ body{
   display: flex;
 }
 
-.css-fky5tw-MuiPaper-root-MuiCard-root{
-  cursor: pointer;
-
+.css-fky5tw-MuiPaper-root-MuiCard-root {
+  border-radius: 15px !important;
 }
-
-
 .css-fky5tw-MuiPaper-root-MuiCard-root button{
     opacity: 0;
     padding: 6px 14px;
@@ -52,6 +54,7 @@ body{
     box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
     color: #DFDEDF;
     width: 100%;
+    cursor: pointer;
     }
     .css-fky5tw-MuiPaper-root-MuiCard-root:hover button{
         opacity: 1;
@@ -70,15 +73,63 @@ body{
   border:1px solid grey; 
   display:flex
 }
-.bid-button{
+.secondary-button{
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px; 
+  color: #64aeb9;
+  border: 1px solid;
+  width: 100%;
+  font-size: 18px;
+  height: 50px;
+  cursor: pointer;
+}
+.primary-button{
   padding: 6px 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   border-radius: 6px;
   border: none;
   background: #64aeb9;
   box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
-  color: #DFDEDF;
+  color: #f9f9f9;
   width: 100%;
   font-size: 18px;
   height: 50px;
+  cursor: pointer;
+}
+.col-name{
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+}
+.col-item{
+  text-align: center;
+}
+.grid-info{
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  padding: 5px 0px;
+  margin: 30px 0;
+  border:1px solid #b4d3ce;
+  border-radius: 15px;
+}
+h2{
+  color:#122b29;
+}
+.description-text{
+  margin:20px 0;
+  color:#122b29;
+}
+h3{
+  color: #64aeb9;
+  font-weight: 700;
+  text-decoration: underline;
+}
+h1{
+
+  color: #64aeb9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+
 }

@@ -5,9 +5,10 @@ const HeaderMenu = () => {
   return (
     <div>  
         <header className='headerNav'>
-            <Link to='/login'>Home</Link>
+            <Link to='/dashboard'>Home</Link>
            <div className='sub-header'>
-            <Link to='/login'>My Jobs</Link>
+            <Link to='/jobs'>My Jobs</Link>
+            <Link to='/bids'>My Bids</Link>
             <Link to='/login'>Login</Link>
            </div>
         </header>
