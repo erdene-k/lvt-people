@@ -11,7 +11,16 @@ export default class JobsController {
     }
     public async store({request, response}:HttpContextContract){
         const newJobSchema = schema.create({
-            name:schema.string({trim:true}),
+            type:schema.string(),
+            numOfQuotation:schema.number(),
+            location:schema.string(),
+            making:schema.string(),
+            description:schema.string(),
+            budeg:schema.number(),
+            colors:schema.array().members(schema.string()),
+            size:schema.string(),
+            bids:schema.array().members(schema.number()),
+            acceptedBid:schema.string(),
         })
         const payload = await request.validate({schema:newJobSchema});
           

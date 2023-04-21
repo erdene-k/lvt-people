@@ -5,7 +5,26 @@ export default class Job extends BaseModel {
   @column({ isPrimary: true })
   public id: number
   @column()
-  public name:string;
+  public type:string;
+  @column()
+  public numOfQuotations:number;
+  @column()
+  public location:string;
+  @column()
+  public making:string;
+  @column()
+  public description:string;
+  @column()
+  public budget:number;
+  @column()
+  public colors:string[];
+  @column()
+  public size:string;
+  @column()
+  public bids:number[];
+  @column()
+  public acceptedBid:string;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
