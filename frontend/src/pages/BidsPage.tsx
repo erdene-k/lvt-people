@@ -22,6 +22,7 @@ const BidsPage = () => {
         budget: 20,
         colors: ["red", "green"],
         size: "XL",
+        bids:[]
       },
     },
     {
@@ -41,6 +42,7 @@ const BidsPage = () => {
         budget: 20,
         colors: ["red", "green"],
         size: "XL",
+        bids:[]
       },
     },
   ]);
@@ -48,7 +50,6 @@ const BidsPage = () => {
   return (
     <div >
      <h1>My bids <AssignmentIcon sx={{width:60, height:60}}/></h1>
- 
       {bids.map((bid) => (
         <div key={bid.id} className="bids">
           <BidDetail bid={bid} />

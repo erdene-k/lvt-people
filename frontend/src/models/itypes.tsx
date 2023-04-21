@@ -8,11 +8,13 @@ export interface Job{
     description:string,
     budget:number
     colors:string[],
-    size:string
+    size:string,
+    bids:Bid[],
+    acceptedBid?:Bid
 }
 export interface Bid{
     id:number,
-    job:Job,
+    job?:Job,
     price:number,
     description:string,
     status:Status,

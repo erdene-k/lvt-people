@@ -15,16 +15,16 @@ const BidDetail = ({ bid }: AppProps) => {
       ></CardMedia>
       <CardContent sx={{ margin: 1, display: "flex" }}>
         <div>
-          <h3> {bid.job.making}</h3>
+          <h3> {bid.job?.making}</h3>
           <p>
             <b>Price:</b> {bid.price}
           </p>
           <p>
-            <b>Size:</b> {bid.job.size}
+            <b>Size:</b> {bid.job?.size}
           </p>
           <div style={{ display: "flex", gap: 10 }}>
             <b>Colors:</b>
-            {bid.job.colors.map((color) => (
+            {bid.job?.colors.map((color) => (
               <div className="color-container">
                 <div
                   className="color-content"
@@ -34,7 +34,7 @@ const BidDetail = ({ bid }: AppProps) => {
             ))}
           </div>
           <p>
-            <b>Description:</b> {bid.job.description}
+            <b>Description:</b> {bid.job?.description}
           </p>
         </div>
         <Box
