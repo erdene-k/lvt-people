@@ -3,7 +3,6 @@ export interface Job{
     type:Cloth,
     numOfQuotations:number,
     location:string,
-    typesOfMaking:string,
     making:string,
     description:string,
     budget:number

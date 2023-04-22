@@ -8,16 +8,25 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 type AppProps = { bid: Bid };
 const BidDetail = ({ bid }: AppProps) => {
   return (
-    <Card sx={{ borderRadius: 0, display: "flex", width: 1250, mt: 3 }}>
+    <Card sx={{ borderRadius: 0, display: "flex", width: 1350, mt: 4 }}>
       <CardMedia
-        sx={{ height: 350, minWidth: 300 }}
+        sx={{ height: 400, minWidth: 320 }}
         image={require("./item.jpg")}
       ></CardMedia>
-      <CardContent sx={{ margin: 1, display: "flex" }}>
+      <CardContent sx={{ margin: 1, display: "flex", minWidth: 320 }}>
         <div>
-          <h3> {bid.job?.making}</h3>
+          <h3>Job detail</h3>
           <p>
-            <b>Price:</b> {bid.price}
+            <b>Making: </b>
+            {bid.job?.making}
+          </p>
+          <p>
+            <b>Budget: </b>
+            {bid.job?.budget}
+          </p>
+
+          <p style={{ textAlign: "justify", lineHeight: 1.2 }}>
+            <b>Description:</b> {bid.job?.description}
           </p>
           <p>
             <b>Size:</b> {bid.job?.size}
@@ -33,19 +42,27 @@ const BidDetail = ({ bid }: AppProps) => {
               </div>
             ))}
           </div>
-          <p>
-            <b>Description:</b> {bid.job?.description}
-          </p>
         </div>
         <Box
           component="form"
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexDirection: "column",
+         
+            ml: 5,
+            minWidth: 400,
+            maxWidth: 400,
           }}
         >
-          <FormControl fullWidth sx={{ width: 400 }}>
+          <h3>My propose</h3>
+          <div>
+            <p>&nbsp;</p>
+            <p>
+              <b>Price:</b> {bid.price}$
+            </p>
+            <p style={{ textAlign: "justify", lineHeight: 1.2 }}>
+              <b>Description:</b> {bid.description}
+            </p>
+          </div>
+          <FormControl fullWidth sx={{display:'flex', gap:3, mt:3}}>
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -61,8 +78,9 @@ const BidDetail = ({ bid }: AppProps) => {
                 </MenuItem>
               ))}
             </Select>
+            <button className="primary-button">Change status</button>
           </FormControl>
-          <button className="primary-button">Change status</button>
+         
         </Box>
       </CardContent>
     </Card>

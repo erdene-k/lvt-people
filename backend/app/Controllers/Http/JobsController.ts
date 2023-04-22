@@ -4,7 +4,8 @@ import Job from "App/Models/Job";
 
 export default class JobsController {
     public async index(){
-        return Job.all()
+        const jobs = await Job.query().preload('bids')
+        return jobs
     }
     public async handle(){
         return Job.all()
@@ -12,18 +13,18 @@ export default class JobsController {
     public async store({request, response}:HttpContextContract){
         const newJobSchema = schema.create({
             type:schema.string(),
-            numOfQuotation:schema.number(),
+            num_of_quotations:schema.number(),
             location:schema.string(),
             making:schema.string(),
             description:schema.string(),
-            budeg:schema.number(),
+            budget:schema.number(),
+            user_id:schema.number(),
             colors:schema.array().members(schema.string()),
             size:schema.string(),
             bids:schema.array().members(schema.number()),
-            acceptedBid:schema.string(),
+            accepted_bid:schema.number.optional(),
         })
         const payload = await request.validate({schema:newJobSchema});
-          
         const job = await Job.create(payload)
         response.status(201)
         return job;
@@ -34,14 +35,25 @@ export default class JobsController {
     public async update({request, params}:HttpContextContract){
         const body = request.body()
         const job = await Job.findOrFail(params.id);
-        job.name = body.name
+        job.merge(body)
         return job.save();
     }
     public async destroy({params, response}:HttpContextContract){
+        console.log('delete')
         const job = await Job.findOrFail(params.id);
         response.status(204)
         await job.delete();
         return job;
+    }
+    public async acceptBid({params, request}:HttpContextContract){
+        const bidId = request.body().bidId
+        const job = await Job.findOrFail(params.id);
+        job.accepted_bid = bidId;
+        return job.save();
+    }
+    public async filter({params, response}:HttpContextContract){
+     const jobs =  await Job.query().where('location', 'LIKE', params.location)
+        return jobs
     }
 }
 

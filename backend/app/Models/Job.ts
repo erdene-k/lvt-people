@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import Bid from './Bid';
 
 export default class Job extends BaseModel {
   @column({ isPrimary: true })
@@ -7,7 +8,7 @@ export default class Job extends BaseModel {
   @column()
   public type:string;
   @column()
-  public numOfQuotations:number;
+  public num_of_quotations:number;
   @column()
   public location:string;
   @column()
@@ -17,13 +18,17 @@ export default class Job extends BaseModel {
   @column()
   public budget:number;
   @column()
+  public user_id:number;
+  @column()
   public colors:string[];
   @column()
   public size:string;
   @column()
-  public bids:number[];
-  @column()
-  public acceptedBid:string;
+  public accepted_bid: number | null;
+
+
+  @hasMany(() => Bid)
+  public bids: HasMany<typeof Bid>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
