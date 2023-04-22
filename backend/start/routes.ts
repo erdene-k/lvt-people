@@ -26,13 +26,15 @@ Route.get('/', async () => {
 Route.resource('jobs', 'JobsController')
 Route.resource('bids', 'BidsController')
 Route.resource('users', 'UsersController')
+
 Route.post('register', 'AuthController.register').as('auth.register')
 Route.post('login', 'AuthController.login').as('auth.login')
 Route.post('logout', 'AuthController.logout').as('auth.logout')
-Route.get('filterJobs','JobsController.filter')
+
 Route.put('/bids/:id/changeStatus','BidsController.changeStatus')
 Route.put('/bids/:id/confirmBid','BidsController.confirmBid')
 Route.put('/jobs/:id/acceptBid','JobsController.acceptBid')
+Route.get('/filterJobs','JobsController.filterJobs')
 // Route.group(() => {
 //   Route.get("/dashboard", "TodosController.index").as("dashboard");
 //   Route.get("/todos/user", "TodosController.byUserId");

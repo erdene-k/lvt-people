@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema} from '@ioc:Adonis/Core/Validator'
+import Database from '@ioc:Adonis/Lucid/Database';
 import Job from "App/Models/Job";
 
 export default class JobsController {
@@ -51,8 +52,16 @@ export default class JobsController {
         job.accepted_bid = bidId;
         return job.save();
     }
-    public async filter({params, response}:HttpContextContract){
-     const jobs =  await Job.query().where('location', 'LIKE', params.location)
+    public async filterJobs({request}:HttpContextContract){
+        const { type, location } = request.qs()
+        const jobsQuery = Job.query()
+        if (type) {
+          jobsQuery.where('type', 'like', `%${type}%`)
+        }
+        if (location) {
+          jobsQuery.where('location', 'like', `%${location}%`)
+        }
+        const jobs = await jobsQuery.exec()
         return jobs
     }
 }
