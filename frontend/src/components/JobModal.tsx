@@ -74,18 +74,20 @@ const JobModal = ({ data, modalVisible, handleClose }: AppProps) => {
 
 export default JobModal;
 const style = {
-  width: 400,
+  width: {sm: 300, lg: 400},
   bgcolor: "#f9f9f9",
   border: "0.1px rgba(50,155,155,0.1) solid",
   borderRadius: 5,
+  mb:2
 };
 const bidStyle = {
-  width: 400,
+  width: {sm: 300, lg: 400},
   bgcolor: "#f0f0f0",
   border: "0.1px rgba(50,155,155,0.1) solid",
   display: "flex",
   flexDirection: "column",
   justifyContent: " space-between",
+  mb:2
 };
 const style1 = {
   position: "absolute",
@@ -98,6 +100,6 @@ const style1 = {
   boxShadow: 1,
   p: 4,
   height: "max-content",
-  display: "flex",
+  display: {sm: 'block', lg: 'flex'},
   gap: 5,
 };

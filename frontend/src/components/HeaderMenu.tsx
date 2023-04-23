@@ -1,15 +1,19 @@
 import React from 'react'
 import { Outlet, Link } from 'react-router-dom'
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import WorkIcon from '@mui/icons-material/Work';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
 const HeaderMenu = () => {
   return (
     <div>  
         <header className='headerNav'>
-            <Link to='/dashboard'>Home</Link>
+            <Link to='/dashboard'>
+             <DashboardIcon sx={{width:50, height:50}}/> </Link> 
            <div className='sub-header'>
-            <Link to='/jobs'>My Jobs</Link>
-            <Link to='/bids'>My Bids</Link>
-            <Link to='/login'>Login</Link>
+            <Link to='/jobs'>My Jobs <WorkIcon/></Link>
+            <Link to='/bids'>My Bids <WorkspacesIcon/></Link>
+            <Link to='/login'><ExitToAppIcon/></Link>
            </div>
         </header>
         <Outlet/>

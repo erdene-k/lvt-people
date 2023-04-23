@@ -1,0 +1,136 @@
+.css-fky5tw-MuiPaper-root-MuiCard-root button{
+    opacity: 0;
+    padding: 6px 14px;
+    border-radius: 6px; 
+    color: #f9f9f9;
+    width: 100%;
+    font-size: 18px;
+    height: 40px;
+    cursor: pointer;
+    background:none;
+    z-index: 5;
+    background-color: rgba(2, 48, 71, 0.8);
+  }
+  .css-fky5tw-MuiPaper-root-MuiCard-root:hover button{
+      opacity: 0.95;
+      
+  }
+  button:hover{
+    box-shadow: rgba(43, 54, 54,0.2) 0px 2px 8px 1px
+  }
+  .css-46bh2p-MuiCardContent-root{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4a4e69;
+  }
+  .secondary-button{
+    padding: 6px 14px;
+    border-radius: 6px; 
+    color: #219ebc;
+    border: 1px solid;
+    width: 100%;
+    font-size: 18px;
+    height: 50px;
+    cursor: pointer;
+  }
+  .primary-button{
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    background: #219ebc;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+    color: #f9f9f9;
+    width: 100%;
+    font-size: 18px;
+    height: 50px;
+    cursor: pointer;
+  }
+  .btn-group{
+    display: flex;
+    gap: 15px;
+  }
+  
+  .color-button{
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .description-text{
+    margin:20px 0;
+    color:#023047;
+  }
+  h3{
+    color: #219ebc;
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: underline;
+  }
+  h1{
+    color: #219ebc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h2{
+    color: #219ebc;
+    font-size: 30px;
+  }
+  .headerNav {
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    font-size: calc(10px + 2vmin);
+    margin-bottom: 50px;
+  }
+  .css-1t6e9jv-MuiCardActions-root{
+    justify-content: space-between;
+    display: flex;
+  }
+  .css-fky5tw-MuiPaper-root-MuiCard-root {
+    border-radius: 15px !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+    transition: all .5s ease;
+  }
+  .css-fky5tw-MuiPaper-root-MuiCard-root:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important
+  }
+  .pagination{
+    position:relative;
+    display: flex;
+    bottom: 30px;
+    left: 90%;
+  }
+  .sub-header{
+    display: flex;
+    gap:30px;
+    align-items: center;
+  }
+  .headerNav a{
+    color: #023047;
+    text-decoration: none;
+  }
+  .css-sghohy-MuiButtonBase-root-MuiButton-root{
+    height: 60px;
+  }

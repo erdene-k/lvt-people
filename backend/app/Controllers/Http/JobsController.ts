@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema} from '@ioc:Adonis/Core/Validator'
-import Database from '@ioc:Adonis/Lucid/Database';
 import Job from "App/Models/Job";
 
 export default class JobsController {

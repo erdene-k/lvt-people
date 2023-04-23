@@ -8,12 +8,12 @@ import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 type AppProps = { bid: Bid };
 const BidDetail = ({ bid }: AppProps) => {
   return (
-    <Card sx={{ borderRadius: 0, display: "flex", width: 1350, mt: 4 }}>
+    <Card sx={{ borderRadius: 0, display: {xs: 'block', lg: 'flex'}, width: 1350, mt: 4 }}>
       <CardMedia
         sx={{ height: 400, minWidth: 320 }}
         image={require("./item.jpg")}
       ></CardMedia>
-      <CardContent sx={{ margin: 1, display: "flex", minWidth: 320 }}>
+      <CardContent sx={{ margin: 1, display: {xs: 'block', lg: 'flex'}, minWidth: 320 }}>
         <div>
           <h3>Job detail</h3>
           <p>

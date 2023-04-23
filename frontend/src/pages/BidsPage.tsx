@@ -48,9 +48,9 @@ const BidsPage = () => {
   ]);
 
   return (
-    <div >
+    <div style={{margin:10}}>
      <h1>My bids <AssignmentIcon sx={{width:60, height:60}}/></h1>
-      {bids.map((bid) => (
+    {bids.map((bid) => (
         <div key={bid.id} className="bids">
           <BidDetail bid={bid} />
         </div>

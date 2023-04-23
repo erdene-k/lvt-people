@@ -51,7 +51,7 @@ const JobsPage = () => {
   ]);
 
   return (
-    <div>
+    <div style={{margin:10}}>
      <h1>My jobs <AssignmentIndIcon sx={{width:60, height:60}}/></h1>
  
       {jobs.map((job) => (

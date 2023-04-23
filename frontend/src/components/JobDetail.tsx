@@ -28,12 +28,12 @@ const JobDetail = ({ job }: AppProps) => {
     setChecked(newChecked);
   };
   return (
-    <Card sx={{ borderRadius: 0, display: "flex", width: 1250, mt: 3 }}>
+    <Card sx={{ borderRadius: 0, display: {xs: 'block', lg: 'flex'}, width: 1250, mt: 3 }}>
       <CardMedia
         sx={{ height: 350, minWidth: 300 }}
         image={require("./item.jpg")}
       ></CardMedia>
-      <CardContent sx={{ margin: 1, display: "flex" }}>
+      <CardContent sx={{ margin: 1, display: {xs: 'block', lg: 'flex'} }}>
         <div>
           <h3> {job.making}</h3>
 
