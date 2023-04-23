@@ -1,28 +1,40 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
+import React, { FormEvent, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { API } from "../services/service";
+import { useAuth } from "../hooks/useAuth";
+import { AuthContextType } from "../models/itypes";
+import { CircularProgress } from "@mui/material";
+
 
 const Login = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { login } = useAuth() as AuthContextType;
+  const [loading, setLoading] = useState(false)
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    if(loading){return;}
+    setLoading(true)
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    let loginData = {
       email: data.get("email"),
-      password: data.get("password"),
-    });
+      password: data.get("password")
+    };
+    await API("POST", "/login",loginData,true).then((res:any)=>{
+      if(res.status===200){
+       login({accessToken:res.data.token})
+      }
+      }).catch(error=>{
+        console.log(error);
+      }).finally(()=>setLoading(false))
   };
   return (
     <div className="login">
-      <Box
-        sx={boxSx}
-      >
+    
+  {loading &&  <CircularProgress size={120} sx={spinSx} />}
+      <Box sx={boxSx}>
         <h1> Welcome </h1>
-        <Box component="form" onSubmit={handleSubmit}   sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -43,11 +55,6 @@ const Login = () => {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-          className="reminder"
-            control={<Checkbox value="remember" color="primary"/>}
-            label="Remember me"
-          />
           <button className="primary-button" type="submit">
             Login
           </button>
@@ -63,7 +70,7 @@ const Login = () => {
 };
 
 export default Login;
-const boxSx={
+const boxSx = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -73,4 +80,13 @@ const boxSx={
   p: 5,
   background: "#fff",
   boxShadow: 4,
-}
+};
+const spinSx = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  marginTop: "-60px",
+  marginLeft: "-60px",
+  zIndex:222,
+  color:'#023047'
+};

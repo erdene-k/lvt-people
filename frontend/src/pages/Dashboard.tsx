@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import JobCard from "../components/JobCard";
@@ -11,88 +11,34 @@ import Pagination from "@mui/material/Pagination";
 import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import CreateJobModal from "../components/CreateJobModal";
+import { API } from "../services/service";
+const cities = [
+  "Sydney",
+  "Melbourne",
+  "Brisbane",
+  "Perth",
+  "Adelaide",
+  "Gold Coast",
+  "Canberra",
+  "Hobart",
+  "Darwin",
+  "Cairns",
+];
 const Dashboard = () => {
-  const [data, setData] = useState<Job[]>([
-    {
-      id: 1,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "Sydney",
-      making: "handmade",
-      description:
-        "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is availabl",
-      budget: 20,
-      colors: ["red", "green"],
-      size: "XL",
-      bids: [],
-    },
-    {
-      id: 2,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "AU Sydney",
-
-      making: "sewing machine",
-      description: "blah",
-      budget: 20,
-      colors: ["red", "#ff3"],
-      size: "XL",
-      bids: [],
-    },
-    {
-      id: 3,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "AU Sydney",
-
-      making: "sewing machine",
-      description: "blah",
-      budget: 20,
-      colors: ["red", "#ff3"],
-      size: "XL",
-      bids: [],
-    },
-    {
-      id: 5,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "AU Sydney",
-
-      making: "sewing machine",
-      description: "blah",
-      budget: 20,
-      colors: ["red", "#ff3"],
-      size: "XL",
-      bids: [],
-    },
-    {
-      id: 7,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "AU Sydney",
-
-      making: "sewing machine",
-      description: "blah",
-      budget: 20,
-      colors: ["red", "#ff3"],
-      size: "XL",
-      bids: [],
-    },
-    {
-      id: 4,
-      type: Cloth.SKIRT,
-      numOfQuotations: 2,
-      location: "AU Sydney",
-
-      making: "sewing machine",
-      description: "blah",
-      budget: 20,
-      colors: ["red", "#ff3"],
-      size: "XL",
-      bids: [],
-    },
-  ]);
+  const [data, setData] = useState<Job[]>([]);
   const [open, setOpen] = useState(false);
+  const fetchData=async()=>{
+    await API("GET", "/jobs").then((res:any)=>{
+      if(res.status===200){
+        setData(res.data)
+      }
+      }).catch(error=>{
+        console.log(error);
+      })
+  }
+  useEffect(()=>{
+    fetchData();
+  },[])
   return (
     <div>
       <CreateJobModal handleClose={()=>setOpen(false)} modalVisible={open} />
@@ -135,9 +81,9 @@ const Dashboard = () => {
               label="Location"
               className="filter"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+            {cities.map((city,key) => (
+                <MenuItem key={key} value={city}>{city}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>

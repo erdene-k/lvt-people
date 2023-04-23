@@ -1,7 +1,7 @@
 export interface Job{
     id:number,
     type:Cloth,
-    numOfQuotations:number,
+    num_of_quotations:number,
     location:string,
     making:string,
     description:string,
@@ -42,4 +42,11 @@ export enum Status{
     POSTED = "Posted"
 }
 
-
+export interface IAuth {
+    accessToken: Object;
+  }
+  export type AuthContextType = {
+    user: IAuth;
+    login: (data: IAuth) => Promise<void>;
+    logout: () => void;
+  };

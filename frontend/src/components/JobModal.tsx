@@ -34,7 +34,7 @@ const JobModal = ({ data, modalVisible, handleClose }: AppProps) => {
             <p className="col-name"> Quotation count</p>
             <p className="col-name">Budget</p>
             <p className="col-item"> {data.size}</p>
-            <p className="col-item"> {data.numOfQuotations}</p>
+            <p className="col-item"> {data.num_of_quotations}</p>
             <p className="col-item">{data.budget}$</p>
           </div>
           <p className="description-text"> {data.description}</p>

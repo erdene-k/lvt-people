@@ -9,8 +9,8 @@ export default class AuthController {
         })
          const data = await request.validate({schema:userSchema})
          const user = await User.create(data)
-         await auth.login(user)
-         return response.status(200)
+         const loginData = await auth.login(user)
+         return loginData
     } 
     public async login({auth, request, response, session}:HttpContextContract){
         const loginSchema = schema.create({
@@ -21,6 +21,7 @@ export default class AuthController {
         try {
              const token = await auth.attempt(email, password);
              return token
+             
         } catch (error) {
             session.flash('form', 'email is incorrect')
             return response.status(404)

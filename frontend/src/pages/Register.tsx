@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import { API } from "../services/service";
+import { useAuth } from "../hooks/useAuth";
+import { AuthContextType } from "../models/itypes";
 
 const Register = () => {
   const [loading, setLoading] = useState(false)
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { login } = useAuth() as AuthContextType;
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setLoading(true)
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setLoading(true)
-    console.log({
+    let registerData = {
       email: data.get("email"),
-      password: data.get("password"),
-    });
-  
+      password: data.get("password")
+    };    
+    await API("POST", "/register",registerData,true).then((res:any)=>{
+      if(res.status===200){
+        login({accessToken:res.data.token})
+       }
+       }).catch(error=>{
+         console.log(error);
+       }).finally(()=>setLoading(false))
   };
   return (
     <div className="login">
-     {loading &&  <CircularProgress size={80} sx={spinSx} />}
+     {loading &&  <CircularProgress size={120} sx={spinSx} />}
       <Box sx={boxSx}>
         <h2> Register your account </h2>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -71,6 +80,8 @@ const spinSx = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  marginTop: "-40px",
-  marginLeft: "-40px",
+  marginTop: "-60px",
+  marginLeft: "-60px",
+  zIndex:222,
+  color:'#023047'
 };

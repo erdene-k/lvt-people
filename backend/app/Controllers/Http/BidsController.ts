@@ -12,7 +12,7 @@ export default class BidsController {
     public async handle(){
         return Bid.all()
     }
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         const newBidSchema = schema.create({
              job_id:schema.number(),
              price:schema.number(),
@@ -20,15 +20,19 @@ export default class BidsController {
              status:schema.string()
         })
         const payload = await request.validate({schema:newBidSchema});
-        
+    
         const job = await Job.findOrFail(request.body().job_id);
         const email = (await User.findOrFail(job.user_id)).email;
         const bid = await Bid.create(payload)
+        const user = await auth.name
+        console.log(user);
+        
         await Mail.send((message) => {
             message.to(email)
             .from('tesoro.ec@gmail.com')
             .subject('New bid')
-            .html(`<p> Dear user, You have received a new bid</p>
+            .html(`<b> Dear user, You have received a new bid</b>
+
             <a href="/jobs">See the bid</a>
             `)
           })
