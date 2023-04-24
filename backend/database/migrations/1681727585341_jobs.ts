@@ -17,7 +17,7 @@ export default class extends BaseSchema {
       table.integer('accepted_bid').nullable()
       table.specificType('bids', 'numeric[]')
       table.specificType('colors', 'text []')
-    
+      table.specificType('images', 'text []')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

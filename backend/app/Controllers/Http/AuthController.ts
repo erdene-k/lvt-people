@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 export default class AuthController {
-    public async register({auth,request,response}:HttpContextContract){
+    public async register({auth,request}:HttpContextContract){
         const userSchema = await schema.create({
             email: schema.string({trim:true}, [rules.email(),rules.unique({table:'users', column:'email', caseInsensitive:true})]),
             password: schema.string({}, [rules.minLength(8)]),
@@ -20,7 +20,10 @@ export default class AuthController {
         const {email, password} = await request.validate({schema:loginSchema})
         try {
              const token = await auth.attempt(email, password);
-             return token
+            console.log(auth.user);
+            
+             return {token:token,user:auth.user}
+             
              
         } catch (error) {
             session.flash('form', 'email is incorrect')

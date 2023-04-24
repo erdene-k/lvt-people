@@ -25,7 +25,8 @@ export default class Job extends BaseModel {
   public size:string;
   @column()
   public accepted_bid: number | null;
-
+  @column()
+  public images:string[];
 
   @hasMany(() => Bid)
   public bids: HasMany<typeof Bid>

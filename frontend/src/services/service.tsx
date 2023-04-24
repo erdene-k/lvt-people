@@ -9,8 +9,8 @@ const instance = axios.create({
 });
 
 export async function API(method: string, url: string, data = {}, notoken = false, customHeader = {}) {
-
-  
+    
+    
  const user = GetLocalStorageData("sst_exd");
  const header = {} as AxiosRequestConfig;
  if (!notoken) {

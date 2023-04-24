@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema} from '@ioc:Adonis/Core/Validator'
 import Job from "App/Models/Job";
-
+import Application from '@ioc:Adonis/Core/Application'
 export default class JobsController {
     public async index(){
         const jobs = await Job.query().preload('bids')
@@ -13,7 +13,6 @@ export default class JobsController {
     public async store({request, response}:HttpContextContract){
         const newJobSchema = schema.create({
             type:schema.string(),
-            num_of_quotations:schema.number(),
             location:schema.string(),
             making:schema.string(),
             description:schema.string(),
@@ -21,11 +20,27 @@ export default class JobsController {
             user_id:schema.number(),
             colors:schema.array().members(schema.string()),
             size:schema.string(),
-            bids:schema.array().members(schema.number()),
-            accepted_bid:schema.number.optional(),
+            // num_of_quotations:0,
+            // bids:schema.array().members(schema.number()),
+            // accepted_bid:schema.number.optional(),
+            images: schema.array().members(schema.file({
+                size: '2mb',
+                extnames: ['jpg', 'gif', 'png'],
+              }))
         })
         const payload = await request.validate({schema:newJobSchema});
-        const job = await Job.create(payload)
+        const { images, ...newPayload } = payload;
+        const fixedPayload = {...newPayload, num_of_quotations:0, bids:[]} 
+        const job = await Job.create(fixedPayload)
+        let imgs:string[] = []
+        for (let image of payload.images) {
+            await image.move(Application.tmpPath('uploads'))
+            if(image.fileName)
+            imgs.push(image.fileName)
+          
+        }        
+        job.images = imgs
+        await job.save()
         response.status(201)
         return job;
     }
@@ -39,7 +54,6 @@ export default class JobsController {
         return job.save();
     }
     public async destroy({params, response}:HttpContextContract){
-        console.log('delete')
         const job = await Job.findOrFail(params.id);
         response.status(204)
         await job.delete();

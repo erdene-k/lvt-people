@@ -21,8 +21,10 @@ const Login = () => {
       password: data.get("password")
     };
     await API("POST", "/login",loginData,true).then((res:any)=>{
+      console.log({accessToken:res.data.token.token, email:res.data.user.email, id:res.data.user.id});
+      
       if(res.status===200){
-       login({accessToken:res.data.token})
+       login({accessToken:res.data.token.token, email:res.data.user.email, id:res.data.user.id})
       }
       }).catch(error=>{
         console.log(error);
@@ -74,7 +76,7 @@ const boxSx = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  width: 600,
+  width: 400,
   border: "0.1px rgba(50,155,155,0.5) solid",
   borderRadius: 5,
   p: 5,

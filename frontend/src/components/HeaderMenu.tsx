@@ -21,7 +21,7 @@ const HeaderMenu = () => {
        {loading &&  <CircularProgress size={120} sx={spinSx} />}
       <header className="headerNav">
         <Link to="/dashboard">
-          <DashboardIcon sx={{ width: 50, height: 50 }} />{" "}
+          <DashboardIcon sx={{ width: 50, height: 50 }} />
         </Link>
         <div className="sub-header">
           <Link to="/jobs">
@@ -54,6 +54,9 @@ export default HeaderMenu;
 const iconBtn={
   color: "#fff",
   backgroundColor:'#023047',
+  borderRadius:2,
+  padding:0,
+  margin:0,
   "&:hover": {
     backgroundColor: " #02304f",
   },

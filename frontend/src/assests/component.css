@@ -75,6 +75,32 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 1)
+  }
+  .clear-button{
+    border-radius: 8px;
+    background-color: #FFF;
+    border-style: none;
+    box-sizing: border-box;
+    color: #219ebc;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px
   }
   .description-text{
     margin:20px 0;
@@ -91,7 +117,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 36px !important;
+    font-size: 32px !important;
   }
   
   h2{
@@ -102,7 +128,7 @@
     display: flex;
     justify-content: space-between;
     font-size: calc(10px + 2vmin);
-    margin-bottom: 50px;
+    margin: 0 10px 50px 10px;
   }
   .css-1t6e9jv-MuiCardActions-root{
     justify-content: space-between;
@@ -117,15 +143,16 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important
   }
   .pagination{
-    position:relative;
-    display: flex;
-    bottom: 10px;
-    left: 90%;
+   padding: 30px;
+   display: flex;
+   justify-content: flex-end;
+
   }
   .sub-header{
     display: flex;
     gap:30px;
     align-items: center;
+    
   }
   .headerNav a{
     color: #023047;
@@ -133,4 +160,31 @@
   }
   .css-sghohy-MuiButtonBase-root-MuiButton-root{
     height: 60px;
+  }
+  .custom-file-input::-webkit-file-upload-button {
+    margin-top: 10px;
+    visibility: hidden;
+    width: 10px;
+  }
+  .custom-file-input::before {
+    
+    content: 'Upload images';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
   }

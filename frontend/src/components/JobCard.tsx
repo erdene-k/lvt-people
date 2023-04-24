@@ -3,16 +3,18 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Job, Cloth } from "../models/itypes";
+import { Job } from "../models/itypes";
 import JobModal from "./JobModal";
 type AppProps = { job: Job };
 
 const JobCard = ({ job }: AppProps) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const imgUrl = job.images? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[1]}` : require('./item.jpg')
   return (
     <Card raised={true}>
-      <CardMedia sx={{ height: 300, width: 300 }} image={require("./item.jpg")}>
+      <CardMedia sx={{ height: 250, width: 250 }} image={imgUrl}>
+      
         <div
           style={{
             display: "flex",

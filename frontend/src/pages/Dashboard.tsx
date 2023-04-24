@@ -1,97 +1,115 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import JobCard from "../components/JobCard";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { Job, Cloth, Status } from "../models/itypes";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Job, cities, types } from "../models/itypes";
 import Pagination from "@mui/material/Pagination";
 import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import CreateJobModal from "../components/CreateJobModal";
 import { API } from "../services/service";
-const cities = [
-  "Sydney",
-  "Melbourne",
-  "Brisbane",
-  "Perth",
-  "Adelaide",
-  "Gold Coast",
-  "Canberra",
-  "Hobart",
-  "Darwin",
-  "Cairns",
-];
+
 const Dashboard = () => {
   const [data, setData] = useState<Job[]>([]);
+  const [typeFilter, setTypeFilter] = useState<string | null>();
+  const [locationFilter, setLocationFilter] = useState<string | null>();
   const [open, setOpen] = useState(false);
-  const fetchData=async()=>{
-    await API("GET", "/jobs").then((res:any)=>{
-      if(res.status===200){
-        setData(res.data)
-      }
-      }).catch(error=>{
-        console.log(error);
+  const fetchData = async () => {
+    await API(
+      "GET",
+      `/filterJobs` +
+        `${typeFilter !== undefined ? `?type=${typeFilter}` : ``}` +
+        `${locationFilter !== undefined ? `?location=${locationFilter}` : ``}`
+    )
+      .then((res: any) => {
+        if (res.status === 200) {
+          setData(res.data);
+        }
       })
-  }
-  useEffect(()=>{
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
     fetchData();
-  },[])
+  }, [typeFilter, locationFilter]);
+  const handleTypeChange = (event: SelectChangeEvent) => {
+    setTypeFilter(event.target.value as string);
+  };
+  const handleLocationChange = (event: SelectChangeEvent) => {
+    setLocationFilter(event.target.value as string);
+  };
+  const clearFilter = () => {
+    setTypeFilter(undefined);
+    setLocationFilter(undefined);
+  };
   return (
     <div>
-      <CreateJobModal handleClose={()=>setOpen(false)} modalVisible={open} />
+      <CreateJobModal handleClose={() => setOpen(false)} modalVisible={open} />
       <div className="dashboard-header">
         <div>
           <h1>
             Available job list
             <IconButton
               sx={iconBtn}
-              onClick={() => {setOpen(true)}}
+              onClick={() => {
+                setOpen(true);
+              }}
             >
-              <AddIcon sx={{ p: 0.8 }} />
+              <AddIcon sx={{ p: 0.3 }} />
             </IconButton>
           </h1>
         </div>
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          className="filter-form"
-        >
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Location"
-              className="filter"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Location</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Location"
-              className="filter"
-            >
-            {cities.map((city,key) => (
-                <MenuItem key={key} value={city}>{city}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
+        <div style={{ display: "flex", gap: 10 }}>
+          <Box
+            component="form"
+            noValidate
+            autoComplete="off"
+            className="filter-form"
+          >
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Type</InputLabel>
+              <Select
+                label="Location"
+                className="filter"
+                value={typeFilter ? typeFilter : ""}
+                onChange={handleTypeChange}
+              >
+                {types.map((type, key) => (
+                  <MenuItem key={key} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Location</InputLabel>
+              <Select
+                label="Location"
+                className="filter"
+                onChange={handleLocationChange}
+                value={locationFilter ? locationFilter : ""}
+              >
+                {cities.map((city, key) => (
+                  <MenuItem key={key} value={city}>
+                    {city}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+          <button type="button" className="clear-button" onClick={clearFilter}>
+            clear
+          </button>
+        </div>
       </div>
 
       <div className="cards">
         {data.map((item) => (
-          <JobCard job={item} key={item.id}/>
+          <JobCard job={item} key={item.id} />
         ))}
       </div>
       <Pagination className="pagination" count={1} shape="rounded" />
@@ -100,7 +118,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-const iconBtn={
+const iconBtn = {
   borderRadius: 2,
   color: "#fff",
   backgroundColor: " #219ebc",
@@ -108,4 +126,4 @@ const iconBtn={
   "&:hover": {
     backgroundColor: " #219ebc",
   },
-}
+};

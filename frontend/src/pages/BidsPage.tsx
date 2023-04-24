@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Bid } from "../models/itypes";
-import { Cloth, Status } from "../models/itypes";
+import { Status } from "../models/itypes";
 import BidDetail from "../components/BidDetail";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 const BidsPage = () => {

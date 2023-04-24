@@ -11,10 +11,8 @@ const JobModal = ({ data, modalVisible, handleClose }: AppProps) => {
     <Modal
       open={modalVisible}
       onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
     >
-      <Box sx={style1}>
+      <Box sx={modalStyle}>
         <Box sx={style}>
           <div
             style={{
@@ -74,11 +72,14 @@ const JobModal = ({ data, modalVisible, handleClose }: AppProps) => {
 
 export default JobModal;
 const style = {
-  width: {sm: 300, lg: 400},
+
+
+  width: { xs:300, sm: 350, lg: 400},
   bgcolor: "#f9f9f9",
   border: "0.1px rgba(50,155,155,0.1) solid",
   borderRadius: 5,
-  mb:2
+  mb:2,
+
 };
 const bidStyle = {
   width: {sm: 300, lg: 400},
@@ -89,7 +90,7 @@ const bidStyle = {
   justifyContent: " space-between",
   mb:2
 };
-const style1 = {
+const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",

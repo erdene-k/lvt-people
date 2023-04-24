@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Bid, Job} from "../models/itypes";
-import { Cloth, Status } from "../models/itypes";
+import {  Status } from "../models/itypes";
 import JobDetail from "../components/JobDetail";
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 const JobsPage = () => {
