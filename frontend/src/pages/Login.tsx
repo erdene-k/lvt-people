@@ -21,7 +21,7 @@ const Login = () => {
       password: data.get("password")
     };
     await API("POST", "/login",loginData,true).then((res:any)=>{
-      console.log({accessToken:res.data.token.token, email:res.data.user.email, id:res.data.user.id});
+  
       
       if(res.status===200){
        login({accessToken:res.data.token.token, email:res.data.user.email, id:res.data.user.id})

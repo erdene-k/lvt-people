@@ -20,9 +20,6 @@ export default class JobsController {
             user_id:schema.number(),
             colors:schema.array().members(schema.string()),
             size:schema.string(),
-            // num_of_quotations:0,
-            // bids:schema.array().members(schema.number()),
-            // accepted_bid:schema.number.optional(),
             images: schema.array().members(schema.file({
                 size: '2mb',
                 extnames: ['jpg', 'gif', 'png'],
@@ -45,7 +42,8 @@ export default class JobsController {
         return job;
     }
     public async show({params}:HttpContextContract){
-        return Job.findOrFail(params.id);
+        const jobs = await Job.query().preload('bids').where('user_id', '=', params.id)
+        return jobs
     }
     public async update({request, params}:HttpContextContract){
         const body = request.body()

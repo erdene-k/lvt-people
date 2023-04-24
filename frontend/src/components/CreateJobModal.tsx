@@ -2,19 +2,23 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { BlockPicker } from "react-color";
-import { MenuItem, Select, TextField } from "@mui/material";
+import { CircularProgress, MenuItem, Select, TextField } from "@mui/material";
 import { cities, types } from "../models/itypes";
 import axios from "axios";
 import { GetLocalStorageData } from "../hooks/useLocalStorage";
 
-type AppProps = { modalVisible: boolean; handleClose: () => void };
-const CreateModal = ({ modalVisible, handleClose }: AppProps) => {
+type AppProps = {
+  modalVisible: boolean;
+  handleClose: () => void;
+  fetchData: () => void;
+};
+const CreateModal = ({ modalVisible, handleClose, fetchData }: AppProps) => {
   const [blockPickerColor, setBlockPickerColor] = useState("#37d67a");
   const [colors, setColors] = useState<string[]>([]);
-  const [images, setImages] =  useState<File[]>([]);
+  const [images, setImages] = useState<File[]>([]);
+  const [loading, handleLoading] = useState(false);
   const user = GetLocalStorageData("sst_exd");
-  useEffect(() => {
-  }, [colors, blockPickerColor]);
+  useEffect(() => {}, [colors, blockPickerColor]);
   const removeColors = () => {
     const temp = [...colors];
     temp.splice(colors.length - 1, 1);
@@ -25,54 +29,43 @@ const CreateModal = ({ modalVisible, handleClose }: AppProps) => {
       setColors([...colors, blockPickerColor]);
     }
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    handleLoading(true);
     event.preventDefault();
     const eventData = new FormData(event.currentTarget);
-    // const data = {
-    //   making: eventData.get("making"),
-    //   size: eventData.get("size"),
-    //   budget: eventData.get("budget"),
-    //   city: eventData.get("location"),
-    //   description: eventData.get("description"),
-  
-    // };
-    // const formData = new FormData();
     for (let i = 0; i < images.length; i++) {
       const file = images[i];
-      eventData.append('images', file);
+      eventData.append("images", file);
     }
     for (let i = 0; i < colors.length; i++) {
       const image = colors[i];
-      eventData.append('colors[]', image);
+      eventData.append("colors[]", image);
     }
-
-
-  eventData.append(`user_id`, user.id);
-
+    eventData.append(`user_id`, user.id);
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-
       url: `${process.env.REACT_APP_SERVER_URL}/jobs`,
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
-        "Content-Type": "charset=utf-8"
-        // "Access-Control-Allow-Origin": "*",
+        "Content-Type": "charset=utf-8",
       },
       data: eventData,
     };
-    axios
-    .request(config)
-    .then((response) => {
-      console.log(response.data);
-    })
 
-    .catch((error) => {
-     console.log(error);
-     
-    })
- 
-
+    await axios
+      .request(config)
+      .then((response) => {
+        if (response.status == 201) {
+          handleClose();
+          setColors([])
+          fetchData();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => handleLoading(false));
   };
   return (
     <Modal
@@ -82,6 +75,7 @@ const CreateModal = ({ modalVisible, handleClose }: AppProps) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={modalStyle} component="form" onSubmit={handleSubmit}>
+        {loading && <CircularProgress size={120} sx={spinSx} />}
         <Box sx={style}>
           <div className="making-detail">
             <p className="col-name">The making detail</p>
@@ -107,7 +101,7 @@ const CreateModal = ({ modalVisible, handleClose }: AppProps) => {
               type="number"
               sx={textSx}
             />
-                 <Select
+            <Select
               name="type"
               id="city"
               required
@@ -184,12 +178,14 @@ const CreateModal = ({ modalVisible, handleClose }: AppProps) => {
               </div>
               <input
                 type="file"
+                required
                 multiple={true}
                 name="images"
                 accept="image/png, image/gif, image/jpeg"
                 className="custom-file-input"
-                onChange={(e:any) => {
-                  setImages(e.target.files)}}
+                onChange={(e: any) => {
+                  setImages(e.target.files);
+                }}
               />
             </div>
           </div>
@@ -226,5 +222,14 @@ const modalStyle = {
   display: "flex",
   gap: 5,
 };
-const textSx = { width: 70, mb: 1, ml: 3, };
+const textSx = { width: 70, mb: 1, ml: 3 };
 const selectSx = { mb: 1, ml: 2, mr: 2 };
+const spinSx = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  marginTop: "-60px",
+  marginLeft: "-60px",
+  zIndex: 222,
+  color: "#023047",
+};

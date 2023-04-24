@@ -15,24 +15,22 @@ export default class BidsController {
     public async store({request, response, auth}:HttpContextContract){
         const newBidSchema = schema.create({
              job_id:schema.number(),
+             user_id:schema.number(),
              price:schema.number(),
              description:schema.string(),
              status:schema.string()
         })
         const payload = await request.validate({schema:newBidSchema});
-    
         const job = await Job.findOrFail(request.body().job_id);
         const email = (await User.findOrFail(job.user_id)).email;
         const bid = await Bid.create(payload)
-        const user = await auth.name
-        console.log(user);
-        
+        const user = await auth.user
         await Mail.send((message) => {
             message.to(email)
             .from('tesoro.ec@gmail.com')
             .subject('New bid')
             .html(`<b> Dear user, You have received a new bid</b>
-
+            <p>The bid detail: ${payload.description} from ${user?.email}</p>
             <a href="/jobs">See the bid</a>
             `)
           })
@@ -40,7 +38,8 @@ export default class BidsController {
         return bid;
     }
     public async show({params}:HttpContextContract){
-        return Bid.findOrFail(params.id);
+        const bids = await Bid.query().preload('job').where('user_id', '=', params.id)
+        return bids
     }
     public async update({request, params}:HttpContextContract){
         const body = request.body()

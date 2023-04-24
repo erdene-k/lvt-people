@@ -9,26 +9,26 @@ export interface Job {
   colors: string[];
   size: string;
   bids: Bid[];
-  acceptedBid?: Bid;
+  accepted_bid?:number;
   images: string[];
+  user_id:number
 }
 export interface Bid {
   id: number;
   job?: Job;
   price: number;
   description: string;
-  status: Status;
+  status: string;
+  user_id:number
 }
 
-export enum Status {
-  PENDING = "Pending",
-  IN_PRODUCTION = "In production",
-  READY = "Ready",
-  SHIPPED = "Shipped",
-  DELIVERED = "Delivered",
-  CANCELLED = "Cancelled",
-  POSTED = "Posted",
-}
+export const statuses:string[]= [
+  "Pending",
+  "In production",
+  "Ready",
+  "Accepted",
+  "Confirmed",
+]
 
 export interface IAuth {
   accessToken: Object;

@@ -18,8 +18,10 @@ const Register = () => {
       password: data.get("password")
     };    
     await API("POST", "/register",registerData,true).then((res:any)=>{
+      console.log("res",res);
+      
       if(res.status===200){
-        login({accessToken:res.data.token, email:res.data.email, id:res.data.id})
+        login({accessToken:res.data.token.token, email:res.data.user.email, id:res.data.user.id})
        }
        }).catch(error=>{
          console.log(error);

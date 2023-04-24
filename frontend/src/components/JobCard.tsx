@@ -11,10 +11,10 @@ const JobCard = ({ job }: AppProps) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const imgUrl = job.images? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[1]}` : require('./item.jpg')
+
   return (
     <Card raised={true}>
       <CardMedia sx={{ height: 250, width: 250 }} image={imgUrl}>
-      
         <div
           style={{
             display: "flex",
@@ -40,6 +40,7 @@ const JobCard = ({ job }: AppProps) => {
         <p>{job.budget}$ </p>
         <div style={{ display: "flex", gap: 10 }}>
           {job.colors.map((color,key) => (
+
             <div key={key} className="color-container">
               <div
                 className="color-content"

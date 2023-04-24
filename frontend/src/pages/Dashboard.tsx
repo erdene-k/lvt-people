@@ -11,13 +11,16 @@ import AddIcon from "@mui/icons-material/Add";
 import IconButton from "@mui/material/IconButton";
 import CreateJobModal from "../components/CreateJobModal";
 import { API } from "../services/service";
+import { CircularProgress } from "@mui/material";
 
 const Dashboard = () => {
   const [data, setData] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(false);
   const [typeFilter, setTypeFilter] = useState<string | null>();
   const [locationFilter, setLocationFilter] = useState<string | null>();
   const [open, setOpen] = useState(false);
   const fetchData = async () => {
+    setLoading(true);
     await API(
       "GET",
       `/filterJobs` +
@@ -31,7 +34,8 @@ const Dashboard = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => setLoading(false));
   };
   useEffect(() => {
     fetchData();
@@ -48,7 +52,12 @@ const Dashboard = () => {
   };
   return (
     <div>
-      <CreateJobModal handleClose={() => setOpen(false)} modalVisible={open} />
+      {loading && <CircularProgress size={120} sx={spinSx} />}
+      <CreateJobModal
+        handleClose={() => setOpen(false)}
+        modalVisible={open}
+        fetchData={fetchData}
+      />
       <div className="dashboard-header">
         <div>
           <h1>
@@ -112,6 +121,7 @@ const Dashboard = () => {
           <JobCard job={item} key={item.id} />
         ))}
       </div>
+      {data.length == 0 && <p>No job found</p>}
       <Pagination className="pagination" count={1} shape="rounded" />
     </div>
   );
@@ -126,4 +136,13 @@ const iconBtn = {
   "&:hover": {
     backgroundColor: " #219ebc",
   },
+};
+const spinSx = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  marginTop: "-60px",
+  marginLeft: "-60px",
+  zIndex: 222,
+  color: "#023047",
 };

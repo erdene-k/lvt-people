@@ -10,7 +10,7 @@ export default class AuthController {
          const data = await request.validate({schema:userSchema})
          const user = await User.create(data)
          const loginData = await auth.login(user)
-         return loginData
+         return {token:loginData, user:user}
     } 
     public async login({auth, request, response, session}:HttpContextContract){
         const loginSchema = schema.create({
@@ -19,9 +19,7 @@ export default class AuthController {
         })
         const {email, password} = await request.validate({schema:loginSchema})
         try {
-             const token = await auth.attempt(email, password);
-            console.log(auth.user);
-            
+             const token = await auth.attempt(email, password); 
              return {token:token,user:auth.user}
              
              
