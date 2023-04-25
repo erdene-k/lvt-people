@@ -16,7 +16,7 @@ body{
 }
 body .login
 {
-  background-image: url('./assests/vector.png');
+  background-image: url('../public/vector.png');
   width: 100%;
   height:100vh;
   display: flex;

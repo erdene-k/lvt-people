@@ -9,11 +9,18 @@ type AppProps = { job: Job };
 
 const JobCard = ({ job }: AppProps) => {
   const [open, setOpen] = useState(false);
+  const [isHovered, setHovered] = useState(false);
   const handleClose = () => setOpen(false);
-  const imgUrl = job.images? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[1]}` : require('./item.jpg')
+  const imgUrl = job.images[0]&& !isHovered? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[0]}`:job.images[1]&& isHovered? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[1]}` :'/item.jpg'
 
   return (
-    <Card raised={true}>
+    <Card raised={true} 
+    onMouseOver={()=>{
+      setHovered(true)
+    }}
+    onMouseOut={()=>{
+      setHovered(false)
+    }}>
       <CardMedia sx={{ height: 250, width: 250 }} image={imgUrl}>
         <div
           style={{

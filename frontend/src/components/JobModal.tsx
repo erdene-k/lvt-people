@@ -45,7 +45,7 @@ const JobModal = ({ data, modalVisible, handleClose }: AppProps) => {
   return (
     <Modal
       open={modalVisible}
-
+      onClose={handleClose}
     >
       <Box sx={modalStyle} >
       {loading && <CircularProgress size={120} sx={spinSx} />}

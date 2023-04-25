@@ -17,7 +17,7 @@ const JobDetail = ({ job, fetchData }: AppProps) => {
   const handleToggle = (value: number) => () => {
     setChecked(value);
   };
-
+  const imgUrl = job.images? `${process.env.REACT_APP_SERVER_URL}/uploads/${job.images[0]}` : '/item.jpg'
   const onChoose = async () => {
     if(loading) return
     setLoading(true);
@@ -49,7 +49,7 @@ const JobDetail = ({ job, fetchData }: AppProps) => {
       {loading && <CircularProgress size={120} sx={spinSx} />}
       <CardMedia
         sx={{ height: 300, minWidth: 250 }}
-        image={require("./item.jpg")}
+        image={imgUrl}
       ></CardMedia>
       <CardContent
         sx={{ display: "flex", justifyContent: "space-between", width: 1000 }}

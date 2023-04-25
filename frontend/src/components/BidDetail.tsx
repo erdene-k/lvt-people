@@ -8,6 +8,7 @@ import { API } from "../services/service";
 
 type AppProps = { bid: Bid, fetchData: () => void; };
 const BidDetail = ({ bid, fetchData }: AppProps) => {
+  const imgUrl = bid.job?.images? `${process.env.REACT_APP_SERVER_URL}/uploads/${bid.job?.images[0]}` : '/item.jpg'
   const [curBid, setCurBid] = useState(bid)
   const [loading, setLoading] = useState(false);
   const handleChange = (event: SelectChangeEvent) => {
@@ -32,7 +33,7 @@ const BidDetail = ({ bid, fetchData }: AppProps) => {
     <Card sx={{ borderRadius: 0, display: {xs: 'block', sm: 'flex'}, width: 1350, mt: 4 }}>
       <CardMedia
         sx={{ height: 400, minWidth: 320 }}
-        image={require("./item.jpg")}
+        image={imgUrl}
       ></CardMedia>
       <CardContent sx={{ margin: 1, display: {xs: 'block', sm: 'flex'},width:1000,justifyContent:'space-between' }}>
       {loading && <CircularProgress size={120} sx={spinSx} />}

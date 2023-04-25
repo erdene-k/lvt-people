@@ -12,9 +12,11 @@ import IconButton from "@mui/material/IconButton";
 import CreateJobModal from "../components/CreateJobModal";
 import { API } from "../services/service";
 import { CircularProgress } from "@mui/material";
+import { GetLocalStorageData } from "../hooks/useLocalStorage";
 
 const Dashboard = () => {
   const [data, setData] = useState<Job[]>([]);
+  const user = GetLocalStorageData("sst_exd");
   const [loading, setLoading] = useState(false);
   const [typeFilter, setTypeFilter] = useState<string | null>();
   const [locationFilter, setLocationFilter] = useState<string | null>();
@@ -29,7 +31,9 @@ const Dashboard = () => {
     )
       .then((res: any) => {
         if (res.status === 200) {
-          setData(res.data);
+          setData(res.data.filter((item:any)=>
+           item.user_id !=user.id
+          ));
         }
       })
       .catch((error) => {
