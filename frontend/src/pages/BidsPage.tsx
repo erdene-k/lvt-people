@@ -27,7 +27,7 @@ const BidsPage = () => {
   }, []);
   return (
     <div style={{ margin: 10 }}>
-      {loading && <CircularProgress size={120} sx={spinSx} />}
+      {loading && <CircularProgress size={120} sx={spinSx}/>}
       <h1>
         My bids <AssignmentIcon sx={{ width: 60, height: 60 }} />
       </h1>

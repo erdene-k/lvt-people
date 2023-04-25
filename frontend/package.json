@@ -1,7 +1,7 @@
 {
   "name": "lvt-people",
   "version": "0.1.0",
-  "homepage": "https://erdene-k.github.io/lvt-people/",
+  "homepage": "https://erdene-k.github.io/lvt-people",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
