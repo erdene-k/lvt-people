@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import {  BaseModel, belongsTo, BelongsTo, column, hasOne, HasOne  } from '@ioc:Adonis/Lucid/Orm'
+import {  BaseModel, belongsTo, BelongsTo, column} from '@ioc:Adonis/Lucid/Orm'
 import Job from './Job'
 
 export default class Bid extends BaseModel {

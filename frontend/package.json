@@ -1,6 +1,7 @@
 {
   "name": "lvt-people",
   "version": "0.1.0",
+  "homepage": "https://erdene-k.github.io/lvt-people/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -28,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy" : "npm run build",
+"deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
     "@types/react-color": "^3.0.6",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "gh-pages": "^5.0.0"
   }
 }
