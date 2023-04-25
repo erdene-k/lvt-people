@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/lvt-people/static/css/main.e397bf2d.css",
+    "main.js": "/lvt-people/static/js/main.34377c24.js",
+    "static/js/787.30a21a52.chunk.js": "/lvt-people/static/js/787.30a21a52.chunk.js",
+    "static/media/vector.png": "/lvt-people/static/media/vector.002f6c862300be355240.png",
+    "index.html": "/lvt-people/index.html",
+    "main.e397bf2d.css.map": "/lvt-people/static/css/main.e397bf2d.css.map",
+    "main.34377c24.js.map": "/lvt-people/static/js/main.34377c24.js.map",
+    "787.30a21a52.chunk.js.map": "/lvt-people/static/js/787.30a21a52.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e397bf2d.css",
+    "static/js/main.34377c24.js"
+  ]
+}
