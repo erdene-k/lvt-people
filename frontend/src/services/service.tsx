@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { encryptData, GetLocalStorageData } from "../hooks/useLocalStorage";
 
 const instance = axios.create({
- baseURL: 'http://16.171.59.54:3333',
+ baseURL: process.env.REACT_APP_SERVER_URL,
  headers: {
   "Content-Type": "application/json",
  },
